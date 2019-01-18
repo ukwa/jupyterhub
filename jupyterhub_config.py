@@ -362,7 +362,14 @@
 #  
 #  Should be a subclass of Spawner.
 #c.JupyterHub.spawner_class = 'jupyterhub.spawner.LocalProcessSpawner'
-c.JupyterHub.spawner_class = 'dockerspawner.SystemUserSpawner'
+#c.JupyterHub.spawner_class = 'dockerspawner.SystemUserSpawner'
+c.JupyterHub.spawner_class = 'dockerspawner.SwarmSpawner'
+c.SwarmSpawner.image = 'jupyter/all-spark-notebook:87210526f381'
+import os
+network_name = os.environ['DOCKER_NETWORK_NAME']
+c.SwarmSpawner.network_name = network_name
+c.SwarmSpawner.extra_host_config = {'network_mode': network_name}
+
 
 ## Path to SSL certificate file for the public facing interface of the proxy
 #  

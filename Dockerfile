@@ -28,8 +28,5 @@ RUN mkdir /srv/jupyterhub_users
 EXPOSE 8080
 EXPOSE 8001
 
-# environment variable for swarm
-ENV DOCKER_HOST https://swarm:2375
-
 # run jupyterhub
 ENTRYPOINT ["jupyterhub", "-f", "/srv/jupyterhub_config/jupyterhub_config.py"]
