@@ -1,15 +1,13 @@
-FROM jupyter/jupyterhub
+FROM jupyterhub/jupyterhub
 
-MAINTAINER Jessica Hamrick <jhamrick@berkeley.edu>
+MAINTAINER Andrew Jackson <Andrew.Jackson@bl.uk>
 
 # We need to update pip, otherwise the version of requests that
 # is installed by dockerspawner breaks things.
 RUN pip install --upgrade pip
 
 # Install dockerspawner and oauthenticator
-RUN pip install docker-py==1.9.0
-RUN pip install git+git://github.com/jupyter/dockerspawner.git
-RUN pip install git+git://github.com/jupyter/oauthenticator.git
+RUN pip install dockerspawner oauthenticator
 
 # Install psycopg2
 RUN apt-get update
