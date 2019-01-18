@@ -252,6 +252,7 @@
 #  See `hub_connect_ip` for cases where the bind and connect address should
 #  differ, or `hub_bind_url` for setting the full bind URL.
 #c.JupyterHub.hub_ip = '127.0.0.1'
+c.JupyterHub.hub_ip = '0.0.0.0'
 
 ## The internal port for the Hub process.
 #  
@@ -363,13 +364,14 @@
 #  Should be a subclass of Spawner.
 #c.JupyterHub.spawner_class = 'jupyterhub.spawner.LocalProcessSpawner'
 #c.JupyterHub.spawner_class = 'dockerspawner.SystemUserSpawner'
+c.DockerSpawner.host_ip = "0.0.0.0"
+
 c.JupyterHub.spawner_class = 'dockerspawner.SwarmSpawner'
 c.SwarmSpawner.image = 'jupyter/all-spark-notebook:87210526f381'
 import os
 network_name = os.environ['DOCKER_NETWORK_NAME']
 c.SwarmSpawner.network_name = network_name
 c.SwarmSpawner.extra_host_config = {'network_mode': network_name}
-
 
 ## Path to SSL certificate file for the public facing interface of the proxy
 #  
